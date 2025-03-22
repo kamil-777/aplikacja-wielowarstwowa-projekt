@@ -1,7 +1,6 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-
-db = SQLAlchemy()
+from health_tracker.extensions import db
+from health_tracker.routes import main
 
 def create_app():
     app = Flask(__name__)
@@ -9,7 +8,6 @@ def create_app():
 
     db.init_app(app)
 
-    from health_tracker.routes import main
     app.register_blueprint(main)
 
     return app

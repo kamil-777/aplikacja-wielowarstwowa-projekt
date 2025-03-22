@@ -5,6 +5,13 @@
     <title>Health Tracker</title>
 </head>
 <body>
-    <h1>Witaj w Health Tracker!</h1>
+    <nav>
+        <a href="{{ url_for('main.index') }}">Strona główna</a> |
+        <a href="{{ url_for('main.add_entry') }}">Dodaj wpis</a>
+    </nav>
+
+    <hr>
+
+    {% block content %}{% endblock %}
 </body>
 </html>

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Dodaj wpis zdrowotny</h2>
+  <form method="POST">
+    <label>Kroki:</label><br>
+    <input type="number" name="steps" required><br><br>
+
+    <label>Sen (godz.):</label><br>
+    <input type="number" name="sleep_hours" step="0.1" required><br><br>
+
+    <label>Kalorie:</label><br>
+    <input type="number" name="calories" required><br><br>
+
+    <label>Waga (kg):</label><br>
+    <input type="number" name="weight" step="0.1"><br><br>
+
+    <input type="submit" value="Zapisz">
+  </form>
+{% endblock %}

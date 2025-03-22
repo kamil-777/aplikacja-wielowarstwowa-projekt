@@ -1,4 +1,5 @@
 from health_tracker import create_app
+from health_tracker import db
 
 app = create_app()
 
