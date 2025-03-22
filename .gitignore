@@ -1,0 +1,38 @@
+# Virtual environments
+venv/
+
+# Dependencies files python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Test files
+.pytest_cache/
+*.cover
+
+# Files from database locally
+*.sqlite3
+*.db
+
+# Local editor configuration
+.vscode/
+.idea/
+
+# Docker 
+*.env
+.env.*
+docker-compose.override.yml
+
+# Systems/temporary files
+*.log
+.DS_Store
+Thumbs.db
+
+# Compiled html files
+*.html~
+
+# Windows files
+*.exe
+*.bat
+*.ps1
