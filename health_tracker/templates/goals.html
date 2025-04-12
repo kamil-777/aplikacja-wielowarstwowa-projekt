@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Dodaj nowy cel zdrowotny</h2>
+
+  <form method="POST">
+    <label for="goal_type">Typ celu:</label>
+    <select name="goal_type" id="goal_type" required>
+      <option value="steps">Kroki</option>
+      <option value="calories">Kalorie</option>
+      <option value="sleep">Sen (h)</option>
+      <option value="weight">Waga (kg)</option>
+    </select>
+
+    <br><br>
+
+    <label for="target_value">Wartość docelowa:</label>
+    <input type="number" name="target_value" step="0.1" required>
+
+    <br><br>
+
+    <button type="submit">Zapisz cel</button>
+  </form>
+
+  <hr>
+
+  <h3>Twoje cele:</h3>
+  {% if goals %}
+    <ul>
+      {% for goal in goals %}
+        <li>
+          <strong>{{ goal.type }}</strong>: {{ goal.target_value }}
+          (Status: {% if goal.is_achieved %}✔️ Osiągnięty{% else %}❌ W trakcie{% endif %})
+
+          <form action="{{ url_for('main.delete_goal', goal_id=goal.id) }}" method="POST" style="display:inline;">
+            <button type="submit" onclick="return confirm('Na pewno usunąć ten cel?');">🗑️ Usuń</button>
+          </form>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Nie masz jeszcze żadnych celów.</p>
+  {% endif %}
+{% endblock %}

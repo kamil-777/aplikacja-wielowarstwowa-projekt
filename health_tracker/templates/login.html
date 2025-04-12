@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Logowanie</h2>
+<form method="post">
+    Nazwa użytkownika: <input type="text" name="username"><br><br>
+    Hasło: <input type="password" name="password"><br><br>
+    <button type="submit">Zaloguj się</button>
+</form>
+<a href="{{ url_for('main.register') }}">Nie masz konta? Zarejestruj się</a>
+{% endblock %}

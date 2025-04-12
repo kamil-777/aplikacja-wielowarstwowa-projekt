@@ -7,10 +7,31 @@
 <body>
     <nav>
         <a href="{{ url_for('main.index') }}">Strona główna</a> |
-        <a href="{{ url_for('main.add_entry') }}">Dodaj wpis</a>
+        <a href="{{ url_for('main.add_entry') }}">Dodaj wpis</a> |
+        <a href="{{ url_for('main.manage_goals') }}">Cele zdrowotne</a> |
+        <a href="{{ url_for('main.dashboard') }}">Dashboard</a> |
+        
+        {% if current_user.is_authenticated %}
+            Witaj, {{ current_user.username }} |
+            <a href="{{ url_for('main.logout') }}">Wyloguj się</a>
+        {% else %}
+            <a href="{{ url_for('main.login') }}">Zaloguj się</a> |
+            <a href="{{ url_for('main.register') }}">Zarejestruj się</a>
+        {% endif %}
     </nav>
 
     <hr>
+
+    <!-- Flash messages -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul style="color: green;">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
 
     {% block content %}{% endblock %}
 </body>

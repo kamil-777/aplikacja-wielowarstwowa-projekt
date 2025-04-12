@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>📊 Dashboard zdrowia</h2>
+
+  <div style="width: 80%; margin: auto;">
+    <canvas id="stepsChart"></canvas>
+    <br>
+    <canvas id="caloriesChart"></canvas>
+    <br>
+    <canvas id="sleepChart"></canvas>
+    <br>
+    <canvas id="weightChart"></canvas>
+  </div>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+    const labels = {{ entry_ids|tojson }};
+    const steps = {{ steps|tojson }};
+    const calories = {{ calories|tojson }};
+    const sleep = {{ sleep|tojson }};
+    const weight = {{ weight|tojson }};
+
+    new Chart(document.getElementById('stepsChart'), {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Kroki',
+          data: steps,
+          borderWidth: 2
+        }]
+      }
+    });
+
+    new Chart(document.getElementById('caloriesChart'), {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Kalorie',
+          data: calories,
+          borderWidth: 2
+        }]
+      }
+    });
+
+    new Chart(document.getElementById('sleepChart'), {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Sen (h)',
+          data: sleep,
+          borderWidth: 2
+        }]
+      }
+    });
+
+    new Chart(document.getElementById('weightChart'), {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Waga (kg)',
+          data: weight,
+          borderWidth: 2
+        }]
+      }
+    });
+  </script>
+{% endblock %}
