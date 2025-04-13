@@ -21,6 +21,12 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{{ url_for('main.dashboard') }}">Dashboard</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ url_for('main.notifications') }}">Notifications</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ url_for('main.user_settings') }}">Settings</a>
+                </li>
             </ul>
             <ul class="navbar-nav">
                 {% if current_user.is_authenticated %}

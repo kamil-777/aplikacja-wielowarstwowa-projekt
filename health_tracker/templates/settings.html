@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2 class="mb-4">⚙️ Ustawienia konta</h2>
+
+  <form method="POST">
+    <div class="mb-3">
+      <label for="unit_system" class="form-label">System jednostek:</label>
+      <select class="form-select" name="unit_system" id="unit_system">
+        <option value="metric" {% if settings.unit_system == 'metric' %}selected{% endif %}>Metryczny (kg)</option>
+        <option value="imperial" {% if settings.unit_system == 'imperial' %}selected{% endif %}>Imperialny (lbs)</option>
+      </select>
+    </div>
+
+    <div class="form-check mb-3">
+      <input class="form-check-input" type="checkbox" id="notifications_enabled" name="notifications_enabled" {% if settings.notifications_enabled %}checked{% endif %}>
+      <label class="form-check-label" for="notifications_enabled">
+        Włącz powiadomienia
+      </label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">💾 Zapisz ustawienia</button>
+  </form>
+{% endblock %}
