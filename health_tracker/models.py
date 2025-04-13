@@ -14,6 +14,8 @@ class User(db.Model, UserMixin):  # 👈 dziedziczymy po UserMixin
     # Istniejące relacje
     goals = db.relationship('Goal', backref='user', lazy=True)
     entries = db.relationship('HealthEntry', backref='user', lazy=True)
+    notifications = db.relationship('Notification', backref='user', lazy=True)
+    settings = db.relationship('UserSettings', uselist=False, backref='user')
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -51,3 +53,20 @@ class Goal(db.Model):
 
     def __repr__(self):
         return f"<Goal {self.type} ({self.target_value})>"    
+
+# Model powiadomień
+class Notification(db.Model):
+    __tablename__ = 'notifications'
+    id = db.Column(db.Integer, primary_key=True)
+    message = db.Column(db.String(256), nullable=False)
+    is_read = db.Column(db.Boolean, default=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+# Ustawienia użytkownika
+class UserSettings(db.Model):
+    __tablename__ = 'user_settings'
+    id = db.Column(db.Integer, primary_key=True)
+    unit_system = db.Column(db.String(10), default='metric')  # 'metric' lub 'imperial'
+    notifications_enabled = db.Column(db.Boolean, default=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
