@@ -108,6 +108,10 @@ def register():
         username = request.form["username"]
         email = request.form["email"]
         password = request.form["password"]
+        
+        if not password:
+            flash("Hasło jest wymagane.")
+            return redirect(url_for("main.register"))
 
         if User.query.filter_by(username=username).first():
             flash("Nazwa użytkownika jest już zajęta.")
