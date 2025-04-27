@@ -94,3 +94,64 @@ run.py                 # Plik uruchamiający aplikację
 
 Projekt stworzony przez: Kamil Kwiek
 W ramach przedmiotu Projektowanie wielowarstwowych aplikacji biznesowych L3.
+
+9. Docker
+
+Uruchamianie aplikacji Health Tracker w Dockerze:
+
+Wymagania wstępne:
+
+Aby uruchomić aplikację w kontenerze Dockera, wymagane są:
+
+Zainstalowany Docker Desktop.
+
+Włączony silnik Docker (ikonka wieloryba aktywna na pasku systemowym).
+
+Docker Compose (wbudowane w Docker Desktop).
+
+Struktura plików związanych z Dockerem
+Dockerfile — definiuje obraz aplikacji.
+
+docker-compose.yml — uruchamia kontener z aplikacją.
+
+requirements.txt — lista zależności Pythona.
+
+Kroki do uruchomienia aplikacji
+Otwórz terminal w katalogu głównym projektu.
+
+Wykonaj polecenie:
+
+bash
+Copy
+Edit
+docker-compose up --build
+Aplikacja uruchomi się na porcie 5000 i będzie dostępna pod adresem:
+
+http://localhost:5000
+
+Ważne komendy Docker Compose
+
+Komenda	Opis
+docker-compose up	Uruchamia kontener
+docker-compose up --build	Buduje obraz i uruchamia kontener
+docker-compose down	Zatrzymuje i usuwa kontener
+docker ps	Lista działających kontenerów
+docker images	Lista obrazów Dockera
+Wykorzystywane technologie w kontenerze
+Python 3.13
+
+Flask 3.1
+
+Flask-SQLAlchemy
+
+Flask-Login
+
+SQLite (lokalna baza danych)
+
+Najczęstsze problemy i rozwiązania
+
+Problem	Rozwiązanie
+docker-compose: not recognized	Upewnij się, że Docker Desktop jest włączony
+database is locked	Zamknij aplikację używającą pliku .db
+ModuleNotFoundError: No module named 'flask_login'	Upewnij się, że flask_login jest w requirements.txt
+Brak działania aplikacji	Upewnij się, że Docker działa, a port 5000 jest wolny
